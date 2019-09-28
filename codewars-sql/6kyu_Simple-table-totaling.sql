@@ -67,6 +67,9 @@ group by clan
 
 SELECT 
 	RANK() OVER (ORDER BY SUM(points) DESC),
+	-- The COALESCE function returns the first of its arguments that is not null. 
+	-- Null is returned only if all arguments are null. It is often used to substitute a default value for null values.
+	-- The NULLIF function returns a null value if value1 (clan) equals value2 (''); otherwise it returns value1.
 	COALESCE(NULLIF(clan,''), '[no clan specified]') AS clan,
 	SUM(points) AS total_points,
 	COUNT(*) AS total_people
